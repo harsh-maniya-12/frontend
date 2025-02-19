@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 const API_URL =
   process.env.NODE_ENV === "production"
-    ? "https://du-material.onrender.com/app/v1/admin/login"
-    : "http://localhost:4001/app/v1/admin/login";
+    ? "https://du-material.onrender.com/admin/login"
+    : "http://localhost:4001/admin/login";
 
 function AdminLogin() {
   const [credentials, setCredentials] = useState({ email: "", password: "" });

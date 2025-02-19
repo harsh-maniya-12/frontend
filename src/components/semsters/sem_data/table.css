@@ -1,0 +1,117 @@
+/* Overall Page Background */
+body {
+  background-color: #003366; /* Navy Blue Background */
+  font-family: Arial, sans-serif;
+  color: black; /* Black text color */
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar Styling */
+.navbar {
+  background-color: #002B5C; /* Dark gray navbar */
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Ensures the navbar stays on top */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.nav-links li {
+  margin-right: 20px;
+}
+
+.nav-links a {
+  color: #f1f1f1; /* Light text color for navbar links */
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+  color: #aad4f6; /* Light blue color on hover */
+}
+
+/* Main Content Styling */
+.main-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Table Container */
+.table-container {
+  margin-top: 80px; /* Adjusted for navbar height */
+  margin-bottom: 2rem;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f0f0f0; /* Light gray background for table container */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table-title {
+  font-size: 24px;
+  color: #1a3d6e; /* Navy blue color (slightly lighter shade) */
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Custom Table */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.custom-table th {
+  background-color: #f4f4f4; /* Light gray background for table headers */
+  color: black; /* Black text in headers */
+  font-weight: bold;
+}
+
+.custom-table td {
+  background-color: white; /* White background for table fields */
+}
+
+.custom-table tr:hover {
+  background-color: #f9f9f9; /* Slightly darker background on hover */
+}
+
+.download-button {
+  background-color: #006bb3; /* Blue download button */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.download-button:hover {
+  background-color: #005fa3; /* Darker blue on hover */
+}
+
+/* Loading Text */
+.loading-text {
+  text-align: center;
+  font-size: 16px;
+  color: #aaa; /* Light gray color for loading text */
+}

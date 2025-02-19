@@ -1,0 +1,175 @@
+/* Overall Page Background */
+body {
+  background-color: #003366; /* Navy Blue Background */
+  font-family: Arial, sans-serif;
+  color: black; /* Black text color */
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar Styling */
+.navbar {
+  background-color: #002B5C;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.nav-links li {
+  margin: 10px;
+}
+
+.nav-links a {
+  color: #f1f1f1;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+  color: #aad4f6;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-links li {
+    margin-bottom: 10px;
+  }
+}
+
+/* Main Content Styling */
+.main-container {
+  padding: 20px;
+}
+
+/* Table Container */
+.table-container {
+  margin-top: 80px;
+  margin-bottom: 2rem;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table-title {
+  font-size: 24px;
+  color: #1a3d6e;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Custom Table */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.custom-table th {
+  background-color: #f4f4f4;
+  color: black;
+  font-weight: bold;
+}
+
+.custom-table td {
+  background-color: white;
+}
+
+/* Table Scroll on Small Screens */
+@media (max-width: 768px) {
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .custom-table {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+/* Hover Effect */
+.custom-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Download Button */
+.download-button {
+  background-color: #006bb3;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  font-size: 14px;
+}
+
+.download-button:hover {
+  background-color: #005fa3;
+}
+
+/* Button Resizing */
+@media (max-width: 480px) {
+  .download-button {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
+/* Loading Text */
+.loading-text {
+  text-align: center;
+  font-size: 16px;
+  color: #aaa;
+}
+
+/* Mobile Optimization */
+@media (max-width: 480px) {
+  .table-title {
+    font-size: 20px;
+  }
+
+  .main-container {
+    padding: 10px;
+  }
+}

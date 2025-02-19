@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-deep-navy-blue {
+  background-color: #002147; /* Example of a deep navy blue color */
+}
+
+.card {
+  @apply bg-white border border-gray-300 rounded-lg shadow-md flex items-center justify-center text-center font-bold text-lg text-gray-800;
+  flex-shrink: 0;
+  margin-right: 1rem; /* Space between cards */
+  width: 18rem; /* Default width, can be changed */
+  height: 20rem; /* Default height, can be changed */
+}
+
+.slider-container {
+  @apply relative w-full overflow-hidden; /* Ensure overflow-hidden to maintain focus on the slider */
+}
+
+.slider {
+  @apply flex transition-all duration-500 ease-in-out; /* Smooth sliding animation */
+}
+
+.slider-arrow {
+  @apply absolute top-1/2 bg-gray-500 text-white p-3 rounded-full flex items-center justify-center transform -translate-y-1/2 cursor-pointer hover:bg-gray-700;
+}
+
+.slider-arrow.left {
+  @apply left-2; /* Position the left arrow */
+}
+
+.slider-arrow.right {
+  @apply right-2; /* Position the right arrow */
+}

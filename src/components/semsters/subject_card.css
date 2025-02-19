@@ -1,0 +1,40 @@
+/* subject_card.css */
+
+:root {
+  --card-width: 100%; /* Default width */
+  --card-height: 15rem; /* Default height (48 * 3) */
+}
+
+.bg-custom {
+  background-color: #001f3f;
+}
+
+.card-container {
+  @apply container mx-auto p-4;
+}
+
+.card-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+.card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden;
+  width: var(--card-width); /* Use CSS variable for width */
+  height: var(--card-height); /* Use CSS variable for height */
+}
+
+.card-img {
+  @apply w-full h-full object-cover; /* Change to h-full to fill the card height */
+}
+
+.card-semester-tag {
+  @apply absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded;
+}
+
+.card-content {
+  @apply p-4;
+}
+
+.card-title {
+  @apply text-blue-600 font-semibold;
+}

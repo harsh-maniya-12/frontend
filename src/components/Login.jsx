@@ -8,7 +8,7 @@ function Login() {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+    setCredentials((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleLogin = async (e) => {
@@ -20,24 +20,25 @@ function Login() {
     try {
       const response = await axios.post(
         "https://du-material.onrender.com/app/v1/admin/login",
-       
         credentials,
         { headers: { "Content-Type": "application/json" } }
       );
 
       console.log("Login Successful:", response.data);
       localStorage.setItem("authToken", response.data.token);
-      
-      // Redirect to dashboard
-      navigate("/admin/dashbord");
+
+      // Redirect to dashboard (Fixed typo)
+      navigate("/admin/dashboard");
 
     } catch (error) {
       console.error("Login Failed:", error);
 
-      if (error.response) {
+      if (error.response && error.response.data) {
         setErrorMessage(error.response.data.message || "Login failed. Please try again.");
+      } else if (error.request) {
+        setErrorMessage("No response from server. Please check your internet connection.");
       } else {
-        setErrorMessage("Server error. Please check if the backend is running.");
+        setErrorMessage("An unexpected error occurred. Please try again.");
       }
     }
   };

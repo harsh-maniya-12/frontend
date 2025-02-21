@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './components/Home'
 import Login from './components/Login'
 import Signup from './components/Signup'
-import Sem1 from "/components/semsters/sem1";
+import Sem1 from "components/semsters/sem1";
 import Sem2 from './components/semsters/sem2'
 import Sem3 from './components/semsters/sem3'
 import Sem4 from './components/semsters/sem4'

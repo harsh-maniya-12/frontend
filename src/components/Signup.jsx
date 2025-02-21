@@ -31,7 +31,6 @@ function Signup() {
     setErrorMessage("");
     setSuccessMessage("");
 
-    console.log("Form Data Submitted:", formData);
 
     if (
       !formData.FirstName ||

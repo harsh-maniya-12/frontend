@@ -58,7 +58,7 @@ function Signup() {
         }
       );
 
-      console.log("Signup successful:", response.data);
+      
       setSuccessMessage(response.data.message || "Signup successful! Redirecting...");
 
       // Reset form after successful signup
@@ -76,7 +76,7 @@ function Signup() {
 
     } catch (error) {
       if (error.response) {
-        console.error("Error Response:", error.response.data);
+       
         setErrorMessage(error.response.data.errors || "Signup failed");
       } else {
         setErrorMessage("Error: " + error.message);

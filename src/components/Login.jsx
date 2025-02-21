@@ -1,89 +1,107 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Login() {
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
-  const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  // Handle input changes
   const handleChange = (e) => {
-    setCredentials((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
-  const handleLogin = async (e) => {
+  // Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage(""); // Reset error message
+    setErrorMessage("");
+    setSuccessMessage("");
 
-   
+    if (!formData.email || !formData.password) {
+      setErrorMessage("Please fill in all the fields.");
+      return;
+    }
 
     try {
       const response = await axios.post(
-        "https://du-material.onrender.com/app/v1/admin/login",
-        credentials,
-        { headers: { "Content-Type": "application/json" } }
+        "https://du-material.onrender.com/app/v1/user/login",
+        {
+          email: formData.email,
+          password: formData.password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
 
-     
-      localStorage.setItem("authToken", response.data.token);
-
-      // Redirect to dashboard (Fixed typo)
-      navigate("/admin/dashboard");
-
+      console.log("Login successful:", response.data);
+      setSuccessMessage(response.data.message || "Login successful! Redirecting...");
+      localStorage.setItem("userToken", response.data.token);
+      
+      setTimeout(() => navigate("/"), 2000);
     } catch (error) {
-     
-
-      if (error.response && error.response.data) {
-        setErrorMessage(error.response.data.message || "Login failed. Please try again.");
-      } else if (error.request) {
-        setErrorMessage("No response from server. Please check your internet connection.");
+      if (error.response) {
+        console.error("Error Response:", error.response.data);
+        setErrorMessage(error.response.data.errors || "Login failed");
       } else {
-        setErrorMessage("An unexpected error occurred. Please try again.");
+        setErrorMessage("Server error. Please try again later.");
       }
     }
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Admin Login</h1>
+    <div className="login-container">
+      <h1 className="login-title">Login</h1>
 
-      {errorMessage && <p className="text-red-500 text-xs italic">{errorMessage}</p>}
+      {/* Success Message */}
+      {successMessage && <div className="success-message">{successMessage}</div>}
 
-      <form onSubmit={handleLogin} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Email</label>
+      {/* Error Message */}
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
+
+      <form onSubmit={handleSubmit} className="login-form">
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
           <input
             type="email"
+            id="email"
             name="email"
-            value={credentials.email}
+            value={formData.email}
             onChange={handleChange}
             placeholder="Enter your email"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             required
           />
         </div>
-
-        <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
           <input
             type="password"
+            id="password"
             name="password"
-            value={credentials.password}
+            value={formData.password}
             onChange={handleChange}
             placeholder="Enter your password"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             required
           />
         </div>
 
-        <div className="flex items-center justify-between">
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
-            Login
-          </button>
-        </div>
+        <button type="submit" className="login-button">
+          Login
+        </button>
       </form>
     </div>
   );

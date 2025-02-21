@@ -70,6 +70,9 @@ function Signup() {
       });
 
       // Navigate to login page after 2 seconds
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
 
     } catch (error) {
       if (error.response) {

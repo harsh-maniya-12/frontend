@@ -2,11 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const API_URL =
-  process.env.NODE_ENV === "production"
-    ? "https://du-material.onrender.com/admin/login"
-    : "http://localhost:4001/admin/login";
-
 function AdminLogin() {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [errorMessage, setErrorMessage] = useState("");
@@ -23,15 +18,20 @@ function AdminLogin() {
     console.log("Logging in with:", credentials); // Debugging log
 
     try {
-      const response = await axios.post(API_URL, credentials, {
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await axios.post(
+        "https://du-material.onrender.com/app/v1/admin/login",
+        //"http://localhost:4001/app/v1/admin/login",
+        
+       
+        credentials,
+        { headers: { "Content-Type": "application/json" } }
+      );
 
       console.log("Login Successful:", response.data);
       localStorage.setItem("authToken", response.data.token);
-
+      
       // Redirect to dashboard
-      navigate("/admin/dashboard"); // Check if "dashbord" is a typo
+      navigate("/admin/dashbord");
 
     } catch (error) {
       console.error("Login Failed:", error);

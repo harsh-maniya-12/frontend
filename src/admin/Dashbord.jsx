@@ -21,7 +21,7 @@ function Dashboard() {
     if (!confirmLogout) return;
 
     try {
-      const response = await axios.get("https://du-material.onrender.com/app/v1/admin/logout", {
+      const response = await axios.get("https://du-material.onrender.com/app/v1/admin/admin/logout", {
         withCredentials: true,
       });
 

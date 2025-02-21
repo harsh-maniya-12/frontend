@@ -15,7 +15,7 @@ function Login() {
     e.preventDefault();
     setErrorMessage(""); // Reset error message
 
-    console.log("Logging in with:", credentials); // Debugging log
+   
 
     try {
       const response = await axios.post(
@@ -24,14 +24,14 @@ function Login() {
         { headers: { "Content-Type": "application/json" } }
       );
 
-      console.log("Login Successful:", response.data);
+     
       localStorage.setItem("authToken", response.data.token);
 
       // Redirect to dashboard (Fixed typo)
       navigate("/admin/dashboard");
 
     } catch (error) {
-      console.error("Login Failed:", error);
+     
 
       if (error.response && error.response.data) {
         setErrorMessage(error.response.data.message || "Login failed. Please try again.");

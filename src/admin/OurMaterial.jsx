@@ -26,7 +26,7 @@ function OurMaterial() {
     setError(null);
 
     try {
-      const response = await axios.get(`${API_BASE_URL}/get`, {
+      const response = await axios.get(`${API_BASE_URL}/getSignedUrl`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

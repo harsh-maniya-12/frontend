@@ -15,7 +15,7 @@ function AdminLogin() {
     e.preventDefault();
     setErrorMessage(""); // Reset error message
 
-    console.log("Logging in with:", credentials); // Debugging log
+    
 
     try {
       const response = await axios.post(
@@ -27,14 +27,14 @@ function AdminLogin() {
         { headers: { "Content-Type": "application/json" } }
       );
 
-      console.log("Login Successful:", response.data);
+      
       localStorage.setItem("authToken", response.data.token);
       
       // Redirect to dashboard
       navigate("/admin/dashbord");
 
     } catch (error) {
-      console.error("Login Failed:", error);
+     
 
       if (error.response) {
         setErrorMessage(error.response.data.message || "Login failed. Please try again.");

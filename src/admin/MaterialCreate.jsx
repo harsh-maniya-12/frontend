@@ -80,7 +80,7 @@ const handleSubmit = async (e) => {
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "X-Api-Key": 896481416854355, // Include your API key here
+          "X-Api-Key": "896481416854355", // Include your API key here
           "Content-Type": "multipart/form-data", // Ensure form data is correctly handled
         },
         withCredentials: true,

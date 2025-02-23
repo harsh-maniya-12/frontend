@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { FaTrash, FaEdit } from "react-icons/fa";
 
 function OurMaterial() {
   const [materials, setMaterials] = useState([]);
@@ -26,12 +25,15 @@ function OurMaterial() {
     setError(null);
 
     try {
-      const response = await axios.get(`${API_BASE_URL}/getSignedUrl`, {
+      const response = await axios.get(`${API_BASE_URL}/get`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
+      console.log("Fetched Materials:", response.data.duMaterials);
       setMaterials(response.data.duMaterials || []);
     } catch (err) {
+      console.error("Error fetching materials:", err);
+
       if (err.response?.status === 401) {
         handleLogout();
       } else {
@@ -60,6 +62,8 @@ function OurMaterial() {
       setMaterials((prevMaterials) => prevMaterials.filter((material) => material._id !== id));
       alert("Material deleted successfully!");
     } catch (err) {
+      console.error("Error deleting material:", err);
+
       if (err.response?.status === 401) {
         handleLogout();
       } else {
@@ -74,50 +78,57 @@ function OurMaterial() {
   };
 
   return (
-    <div className="bg-[#001f3f] min-h-screen text-white py-8">
-      <div className="container mx-auto px-6">
-        <h1 className="text-3xl font-bold text-center mb-6 text-yellow-400">📚 Our Material</h1>
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Our Material</h1>
 
-        {loading ? (
-          <div className="text-center text-gray-300 py-6 animate-pulse">Loading materials...</div>
-        ) : error ? (
-          <div className="text-center text-red-400 py-6">
-            {error} <br />
-            <button onClick={handleLogout} className="text-yellow-400 underline hover:text-yellow-500 transition">
-              Login Again
-            </button>
-          </div>
-        ) : materials.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {materials.map((material) => (
-              <div key={material._id} className="bg-gray-800 p-5 rounded-lg shadow-md hover:shadow-lg transition">
-                <p className="text-lg font-semibold text-yellow-300">📌 Semester: {material.sem || "N/A"}</p>
-                <p className="text-md text-gray-300">📖 Subject: {material.subject || "N/A"}</p>
-
-                <div className="flex justify-between mt-4">
-                  <button
-                    onClick={() => navigate(`/update/${material._id}`)}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-blue-700 transition"
-                  >
-                    <FaEdit />
-                    <span>Update</span>
-                  </button>
-
-                  <button
-                    onClick={() => handleDelete(material._id)}
-                    className="bg-red-600 text-white px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-red-700 transition"
-                  >
-                    <FaTrash />
-                    <span>Delete</span>
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center text-gray-300 py-6">No materials found.</div>
-        )}
-      </div>
+      {loading ? (
+        <div className="text-center text-gray-600 py-4">Loading materials...</div>
+      ) : error ? (
+        <div className="text-center text-red-500 py-4">
+          {error} <br />
+          <button onClick={handleLogout} className="text-blue-500 underline">
+            Login Again
+          </button>
+        </div>
+      ) : materials.length > 0 ? (
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse border border-gray-300">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="border p-2">Semester</th>
+                <th className="border p-2">Subject</th>
+                <th className="border p-2">Title</th>
+                <th className="border p-2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {materials.map((material) => (
+                <tr key={material._id} className="border">
+                  <td className="border p-2">{material.sem || "N/A"}</td>
+                  <td className="border p-2">{material.subject || "N/A"}</td>
+                  <td className="border p-2">{material.title || material.note_name || "N/A"}</td>
+                  <td className="border p-2">
+                    <button
+                      onClick={() => navigate(`/update/${material._id}`)}
+                      className="bg-blue-500 text-white px-3 py-1 rounded mr-2 hover:bg-blue-600 transition"
+                    >
+                      Update
+                    </button>
+                    <button
+                      onClick={() => handleDelete(material._id)}
+                      className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="text-center text-gray-600 py-4">No materials found.</div>
+      )}
     </div>
   );
 }

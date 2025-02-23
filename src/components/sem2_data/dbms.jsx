@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../responsive.css";
-
 
 
 function Navbar() {
@@ -32,7 +30,7 @@ function Dbms() {
 
         if (Array.isArray(response.data.duMaterials)) {
           const filteredMaterials = response.data.duMaterials.filter(
-            (item) => item.sem === "2" && (item.subject.toLowerCase() === "dbms" || item.subject === "Database Management System - I" )
+            (item) => item.sem === "2" && item.subject.toLowerCase() === "dbms"
           );
           setMaterials(filteredMaterials);
         } else {

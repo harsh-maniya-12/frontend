@@ -75,7 +75,7 @@ export default function MaterialCreate() {
 
     try {
       const response = await axios.post(
-        "http://localhost:4001/app/v1/du_material/upload",
+        "https://du-material.onrender.com/app/v1/du_material/upload",
         formDataToSend,
         {
           headers: {

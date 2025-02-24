@@ -105,6 +105,32 @@ const Sem5 = () => {
             </div>
           </div> 
 
+
+            {/* Card of cs */}
+      <div
+            className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
+            onClick={() => handleClick("/cs")}
+          >
+             {/*img  */}
+            <div className="relative">
+             
+              <img
+                alt="Illustration of a computer, books, and a graduation cap"
+                className="w-full h-48 object-cover"
+                height="400"
+                src="cs.jpg"
+                width="600"
+              />
+             
+            </div>
+            {/*text */}
+            <div className="p-4">
+              <h2 className="text-blue-600 font-semibold">
+              Cyber Security 
+              </h2>
+            </div>
+          </div>
+
           {/* Card 5 */}
            <div
             className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"

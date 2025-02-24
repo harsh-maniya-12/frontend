@@ -69,7 +69,7 @@ import Csa from './components/sem6_data/csa'
 import Iot from './components/sem6_data/iot'
 import Toc from './components/sem6_data/toc'
 import Net2 from './components/sem6_data/net2'
-import Cs from './components/sem6_data/cs'
+
 import Co from './components/sem6_data/co'
 import GtuPaperSem6 from './components/gtu_paper/gtu_paper_sem6'
 import GtuPaperSem7 from './components/gtu_paper/gtu_paper_sem7'
@@ -153,7 +153,7 @@ function App() {
         <Route path='toc' element={<Toc/>}/>
         <Route path='net2' element={<Net2/>}/>
         <Route path='co' element={<Co/>}/>
-        <Route path='cs' element={<Cs/>}/>
+      
 
 
 

@@ -17,14 +17,14 @@ function UniPaperSem6() {
         console.log("API Response:", response.data); // Debugging API response
 
         if (Array.isArray(response.data.duMaterials)) {
-          // Filter Semester 4 materials
-          const sem4Materials = response.data.duMaterials.filter(
+          // Filter Semester 6 materials (Fixed variable name)
+          const sem6Materials = response.data.duMaterials.filter(
             (item) => String(item.sem) === "6"
           );
 
-          console.log("Filtered Semester 6 Data:", sem4Materials); // Debugging filtered data
+          console.log("Filtered Semester 6 Data:", sem6Materials); // Debugging filtered data
 
-          setMaterials(sem4Materials);
+          setMaterials(sem6Materials);
         } else {
           console.error("API response does not contain 'duMaterials' array.");
           alert("Invalid data format from server.");
@@ -105,7 +105,9 @@ function UniPaperSem6() {
                             onClick={() =>
                               handleDownload(
                                 item.uni_midPaper_upload?.url,
-                                item.uni_midPaper_upload?.public_id?.split("/").pop()
+                                item.uni_midPaper_upload?.public_id
+                                  ?.split("/")
+                                  .pop() || "mid_paper.pdf" // Fix: Added fallback filename
                               )
                             }
                             className="download-button"
@@ -125,7 +127,9 @@ function UniPaperSem6() {
                             onClick={() =>
                               handleDownload(
                                 item.uni_finalPaper_upload?.url,
-                                item.uni_finalPaper_upload?.public_id?.split("/").pop()
+                                item.uni_finalPaper_upload?.public_id
+                                  ?.split("/")
+                                  .pop() || "final_paper.pdf" // Fix: Added fallback filename
                               )
                             }
                             className="download-button"
